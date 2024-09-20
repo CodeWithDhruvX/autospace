@@ -59,6 +59,14 @@
                     ]
                 }
             ]
+        },
+        {
+            "splitTerminals": [
+                {
+                    "name": "ROOT",
+                    "commands": []
+                }
+            ]
         }
     ]
 }

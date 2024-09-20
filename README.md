@@ -5,6 +5,8 @@
 
 npm install -g @nestjs/cli
 
-24.18
+pnpm build at the libs
+
+27.10
 
 pnpm add file:../../libs/sample-lib

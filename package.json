@@ -4,9 +4,21 @@
   "description": "",
   "private": true,
   "keywords": [],
+  "scripts": {
+    "format": "prettier  \"{apps,libs}/**/*.{ts,tsx,js,json}\" --ignore-path .gitignore",
+    "format:check": "pnpm format --check",
+    "format:write": "pnpm format --write",
+    "tsc": "pnpm --parallel -r run tsc",
+    "lint": "pnpm --parallel -r run lint",
+    "build": "pnpm --parallel -r run build",
+    "validate": "pnpm format:write && pnpm tsc && pnpm lint",
+    "prepare": "husky install"
+  },
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "typescript": "^5.6.2"
+    "prettier": "^3.0.0",
+    "typescript": "^5.6.2",
+    "husky": "^8.0.0"
   }
 }
