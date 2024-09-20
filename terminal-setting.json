@@ -1,0 +1,43 @@
+
+{
+    "splitTerminals": [
+        {
+            "name": "API",
+            "commands": [
+                "cd apps\\api",
+            ]
+        },
+        {
+            "name": "API",
+            "commands": [
+                "cd apps\\api"
+            ]
+        }
+    ]
+},
+{
+    "splitTerminals": [
+        {
+            "name": "WEB",
+            "commands": [
+                "cd apps\\web"
+            ]
+        },
+        {
+            "name": "WEB",
+            "commands": [
+                "cd apps\\web"
+            ]
+        }
+    ]
+},
+{
+    "splitTerminals": [
+        {
+            "name": "LIBS",
+            "commands": [
+                "cd libs//sample-lib"
+            ]
+        }
+    ]
+}
