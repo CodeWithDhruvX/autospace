@@ -1,11 +1,11 @@
+import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo'
 import { Module } from '@nestjs/common'
+import { ConfigModule } from '@nestjs/config'
+import { GraphQLModule } from '@nestjs/graphql'
+import { join } from 'path'
 import { AppController } from './app.controller'
 import { AppService } from './app.service'
-import { GraphQLModule } from '@nestjs/graphql'
-import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo'
-import { join } from 'path'
-import { ConfigModule } from '@nestjs/config'
-import { UsersModule } from './users/users.module';
+import { PrismaModule } from './common/prisma/prisma.module'
 
 @Module({
   imports: [
@@ -19,7 +19,7 @@ import { UsersModule } from './users/users.module';
         numberScalarMode:'integer',
       }
     }),
-    UsersModule
+    PrismaModule
   ],
   controllers: [AppController],
   providers: [AppService],

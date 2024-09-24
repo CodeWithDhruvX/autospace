@@ -18,6 +18,12 @@ pnpm prisma studio
 9/24/24
 npm install graphql @apollo/server @nestjs/graphql @nestjs/apollo 
 pnpm nest g resource
+npm install @nestjs/swagger class-transformer class-validator
+npm i @nestjs/jwt
+
+
+https://www.npmjs.com/package/nestjs-prisma-codegen
+
 
 
 WEB:

@@ -7,7 +7,7 @@ CREATE TABLE "User" (
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
     "name" TEXT,
-    "image" TEXT,
+    -- "image" TEXT,
 
     CONSTRAINT "User_pkey" PRIMARY KEY ("uid")
 );
