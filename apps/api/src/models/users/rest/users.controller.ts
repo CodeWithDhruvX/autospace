@@ -23,12 +23,12 @@ import { checkRowLevelPermission } from 'src/common/auth/util'
 export class UsersController {
   constructor(private readonly prisma: PrismaService) {}
 
-  @AllowAuthenticated()
-  @ApiBearerAuth()
+  // @AllowAuthenticated()
+  // @ApiBearerAuth()
   @ApiCreatedResponse({ type: UserEntity })
   @Post()
-  create(@Body() createUserDto: CreateUser, @GetUser() user: GetUserType) {
-    checkRowLevelPermission(user, createUserDto.uid)
+  create(@Body() createUserDto: CreateUser) { //@GetUser() user: GetUserType
+    // checkRowLevelPermission(user, createUserDto.uid)
     return this.prisma.user.create({ data: createUserDto })
   }
 
@@ -49,8 +49,8 @@ export class UsersController {
   }
 
   @ApiOkResponse({ type: UserEntity })
-  @ApiBearerAuth()
-  @AllowAuthenticated()
+  // @ApiBearerAuth()
+  // @AllowAuthenticated()
   @Patch(':uid')
   async update(
     @Param('uid') uid: string,
@@ -58,19 +58,19 @@ export class UsersController {
     @GetUser() user: GetUserType,
   ) {
     const userInfo = await this.prisma.user.findUnique({ where: { uid } })
-    checkRowLevelPermission(user, userInfo.uid)
+    // checkRowLevelPermission(user, userInfo.uid)
     return this.prisma.user.update({
       where: { uid },
       data: updateUserDto,
     })
   }
 
-  @ApiBearerAuth()
-  @AllowAuthenticated()
+  // @ApiBearerAuth()
+  // @AllowAuthenticated()
   @Delete(':uid')
   async remove(@Param('uid') uid: string, @GetUser() user: GetUserType) {
     const userInfo = await this.prisma.user.findUnique({ where: { uid } })
-    checkRowLevelPermission(user, userInfo.uid)
+    // checkRowLevelPermission(user, userInfo.uid)
     return this.prisma.user.delete({ where: { uid } })
   }
 }
