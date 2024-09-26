@@ -15,7 +15,7 @@ A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date
 scalar DateTime
 
 type Query {
-  users(distinct: [UserScalarFieldEnum!], where: UserWhereInput, orderBy: [UserOrderByWithRelationInput!], cursor: UserWhereUniqueInput, take: Int, skip: Int): [User!]!
+  users(distinct: [UserScalarFieldEnum!], where: UserWhereInput, orderBy: [UserOrderByWithRelationInput!], cursor: UserWhereUniqueInput, take: Float, skip: Float): [User!]!
   user(where: UserWhereUniqueInput!): User!
 }
 
@@ -91,11 +91,11 @@ type Mutation {
 input CreateUserInput {
   name: String
   uid: String!
-  age: Int!
+  age: Float!
 }
 
 input UpdateUserInput {
   name: String
   uid: String!
-  age: Int
+  age: Float
 }

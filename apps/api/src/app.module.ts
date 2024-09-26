@@ -2,19 +2,23 @@ import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo'
 import { Module } from '@nestjs/common'
 import { ConfigModule } from '@nestjs/config'
 import { GraphQLModule } from '@nestjs/graphql'
+import { JwtModule } from '@nestjs/jwt'
 import { join } from 'path'
 import { AppController } from './app.controller'
 import { AppService } from './app.service'
 import { PrismaModule } from './common/prisma/prisma.module'
 import { UsersModule } from './models/users/users.module'
-import { JwtModule } from '@nestjs/jwt'
 const MAX_AGE = 24 * 60 * 60
+
+// console.log(process.env.JWT_SECERET);
+
+
 @Module({
   imports: [
     ConfigModule.forRoot(),
     JwtModule.register({
       global: true,
-      secret: process.env.JWT_SECRET,
+      secret: process.env.JWT_SECERET,
       signOptions: { expiresIn: MAX_AGE },
     }),
     GraphQLModule.forRoot<ApolloDriverConfig>({
@@ -22,9 +26,9 @@ const MAX_AGE = 24 * 60 * 60
       introspection:true,
       fieldResolverEnhancers:['guards'],
       autoSchemaFile:join(process.cwd(),'src/schema.gql'),
-      buildSchemaOptions:{
-        numberScalarMode:'integer',
-      }
+      // buildSchemaOptions:{
+      //   numberScalarMode:'integer',
+      // }
     }),
     PrismaModule,
     UsersModule
