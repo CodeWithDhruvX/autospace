@@ -1,5 +1,12 @@
 import {
-  Controller, Get, Post, Body, Patch, Param, Delete, Query
+  Controller,
+  Get,
+  Post,
+  Body,
+  Patch,
+  Param,
+  Delete,
+  Query,
 } from '@nestjs/common'
 
 import { PrismaService } from 'src/common/prisma/prisma.service'
@@ -17,7 +24,6 @@ import { AllowAuthenticated, GetUser } from 'src/common/auth/auth.decorator'
 import { GetUserType } from 'src/common/types'
 import { checkRowLevelPermission } from 'src/common/auth/util'
 
-
 @ApiTags('users')
 @Controller('users')
 export class UsersController {
@@ -27,7 +33,8 @@ export class UsersController {
   // @ApiBearerAuth()
   @ApiCreatedResponse({ type: UserEntity })
   @Post()
-  create(@Body() createUserDto: CreateUser) { //@GetUser() user: GetUserType
+  create(@Body() createUserDto: CreateUser) {
+    //@GetUser() user: GetUserType
     // checkRowLevelPermission(user, createUserDto.uid)
     return this.prisma.user.create({ data: createUserDto })
   }

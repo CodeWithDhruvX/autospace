@@ -1,17 +1,37 @@
 import { Injectable } from '@nestjs/common'
-import { FindManyUserArgs, FindUniqueUserArgs } from './dtos/find.args'
 import { PrismaService } from 'src/common/prisma/prisma.service'
-import { CreateUserInput } from './dtos/create-user.input'
+import { FindManyUserArgs, FindUniqueUserArgs } from './dtos/find.args'
 import { UpdateUserInput } from './dtos/update-user.input'
+import {
+  RegisterWithCredentialsInput,
+  RegisterWithProviderInput,
+} from './dtos/create-user.input'
 
 @Injectable()
 export class UsersService {
   constructor(private readonly prisma: PrismaService) {}
-  create(createUserInput: CreateUserInput) {
+
+  registerWithProvider({ image, name, uid, type }: RegisterWithProviderInput) {
     return this.prisma.user.create({
-      data: createUserInput,
+      data: {
+        uid,
+        image,
+        name,
+        AuthProvider: {
+          create: {
+            type,
+          },
+        },
+      },
     })
   }
+
+  registerWithCredentials({
+    email,
+    name,
+    password,
+    image,
+  }: RegisterWithCredentialsInput) {}
 
   findAll(args: FindManyUserArgs) {
     return this.prisma.user.findMany(args)

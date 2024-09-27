@@ -20,6 +20,7 @@ npm install graphql @apollo/server @nestjs/graphql @nestjs/apollo
 pnpm nest g resource
 npm install @nestjs/swagger class-transformer class-validator
 npm i @nestjs/jwt
+npm install --legacy-peer-deps
 
 
 https://www.npmjs.com/package/nestjs-prisma-codegen
@@ -40,3 +41,8 @@ https://docs.nestjs.com/recipes/prisma
 testing tools:
 
 https://studio.apollographql.com/sandbox/explorer  =>  http://localhost:3000/graphql
+
+
+http://localhost:5000
+
+jwt.io

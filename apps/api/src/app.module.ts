@@ -12,7 +12,6 @@ const MAX_AGE = 24 * 60 * 60
 
 // console.log(process.env.JWT_SECERET);
 
-
 @Module({
   imports: [
     ConfigModule.forRoot(),
@@ -22,16 +21,16 @@ const MAX_AGE = 24 * 60 * 60
       signOptions: { expiresIn: MAX_AGE },
     }),
     GraphQLModule.forRoot<ApolloDriverConfig>({
-      driver:ApolloDriver,
-      introspection:true,
-      fieldResolverEnhancers:['guards'],
-      autoSchemaFile:join(process.cwd(),'src/schema.gql'),
+      driver: ApolloDriver,
+      introspection: true,
+      fieldResolverEnhancers: ['guards'],
+      autoSchemaFile: join(process.cwd(), 'src/schema.gql'),
       // buildSchemaOptions:{
       //   numberScalarMode:'integer',
       // }
     }),
     PrismaModule,
-    UsersModule
+    UsersModule,
   ],
   controllers: [AppController],
   providers: [AppService],
