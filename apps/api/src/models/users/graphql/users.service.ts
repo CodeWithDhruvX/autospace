@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common'
+import { BadRequestException, Injectable } from '@nestjs/common'
 import { PrismaService } from 'src/common/prisma/prisma.service'
 import { FindManyUserArgs, FindUniqueUserArgs } from './dtos/find.args'
 import { UpdateUserInput } from './dtos/update-user.input'
@@ -6,6 +6,8 @@ import {
   RegisterWithCredentialsInput,
   RegisterWithProviderInput,
 } from './dtos/create-user.input'
+import * as bcrypt from 'bcryptjs'
+import {v4 as uuid} from 'uuid'
 
 @Injectable()
 export class UsersService {
@@ -26,12 +28,21 @@ export class UsersService {
     })
   }
 
-  registerWithCredentials({
+  async registerWithCredentials({
     email,
     name,
     password,
     image,
-  }: RegisterWithCredentialsInput) {}
+  }: RegisterWithCredentialsInput) {
+    const existingUsers=await this.prisma.credentials.findUnique({
+      where:{email}
+    })
+
+    if(existingUsers){
+      throw new BadRequestException('User already exist with the email');
+    }
+
+  }
 
   findAll(args: FindManyUserArgs) {
     return this.prisma.user.findMany(args)
