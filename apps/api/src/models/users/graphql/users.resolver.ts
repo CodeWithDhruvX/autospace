@@ -4,6 +4,8 @@ import { checkRowLevelPermission } from 'src/common/auth/util'
 import { PrismaService } from 'src/common/prisma/prisma.service'
 import { GetUserType } from 'src/common/types'
 import {
+  LoginInput,
+  LoginOutput,
   RegisterWithCredentialsInput,
   RegisterWithProviderInput,
 } from './dtos/create-user.input'
@@ -20,8 +22,8 @@ export class UsersResolver {
   ) {}
 
   @Mutation(() => User)
-  async createUserWithCredentials(
-    @Args('registerWithCredentialsInput)') args: RegisterWithCredentialsInput,
+  async registerWithCredentials(
+    @Args('registerWithCredentialsInput') args: RegisterWithCredentialsInput,
   ) {
     return this.usersService.registerWithCredentials(args)
   }
@@ -66,5 +68,16 @@ export class UsersResolver {
     const userInfo = await this.prisma.user.findUnique(args)
     checkRowLevelPermission(user, userInfo.uid)
     return this.usersService.remove(args)
+  }
+
+  @Mutation(() => LoginOutput)
+  async login(@Args('loginInput') args: LoginInput) {
+    return this.usersService.login(args)
+  }
+
+  @AllowAuthenticated()
+  @Query(() => User)
+  whoami(@GetUser() user: GetUserType) {
+    return this.usersService.findOne({ where: { uid: user.uid } })
   }
 }

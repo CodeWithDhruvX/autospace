@@ -19,6 +19,24 @@
         },
         "problemMatcher": [],
         "detail": "Run Prisma migrate dev using pnpm in apps/api folder relative to workspace"
+      },
+      {
+        "label": "Prisma Studio Run",
+        "type": "shell",
+        "command": "pnpm",
+        "args": [
+          "prisma",
+          "studio"
+        ],
+        "options": {
+          "cwd": "${workspaceFolder}/apps/api"
+        },
+        "group": {
+          "kind": "build",
+          "isDefault": true
+        },
+        "problemMatcher": [],
+        "detail": "Run Prisma migrate dev using pnpm in apps/api folder relative to workspace"
       }
     ]
   }

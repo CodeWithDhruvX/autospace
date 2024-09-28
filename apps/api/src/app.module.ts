@@ -10,14 +10,14 @@ import { PrismaModule } from './common/prisma/prisma.module'
 import { UsersModule } from './models/users/users.module'
 const MAX_AGE = 24 * 60 * 60
 
-// console.log(process.env.JWT_SECERET);
+console.log(process.env.JWT_SECRET)
 
 @Module({
   imports: [
     ConfigModule.forRoot(),
     JwtModule.register({
       global: true,
-      secret: process.env.JWT_SECERET,
+      secret: process.env.JWT_SECRET,
       signOptions: { expiresIn: MAX_AGE },
     }),
     GraphQLModule.forRoot<ApolloDriverConfig>({
