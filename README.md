@@ -23,6 +23,11 @@ npm i @nestjs/jwt
 npm install --legacy-peer-deps
 
 
+29/9/24
+npx nx@latest init
+yarn nx run-many -t build
+
+
 https://www.npmjs.com/package/nestjs-prisma-codegen
 
 

@@ -1,28 +1,20 @@
 import {
-  Controller,
-  Get,
-  Post,
   Body,
-  Patch,
-  Param,
+  Controller,
   Delete,
+  Get,
+  Param,
+  Patch,
+  Post,
   Query,
 } from '@nestjs/common'
 
+import { ApiCreatedResponse, ApiOkResponse, ApiTags } from '@nestjs/swagger'
 import { PrismaService } from 'src/common/prisma/prisma.service'
-import { ApiTags } from '@nestjs/swagger'
 import { CreateUser } from './dtos/create.dto'
 import { UserQueryDto } from './dtos/query.dto'
 import { UpdateUser } from './dtos/update.dto'
-import {
-  ApiBearerAuth,
-  ApiCreatedResponse,
-  ApiOkResponse,
-} from '@nestjs/swagger'
 import { UserEntity } from './entity/user.entity'
-import { AllowAuthenticated, GetUser } from 'src/common/auth/auth.decorator'
-import { GetUserType } from 'src/common/types'
-import { checkRowLevelPermission } from 'src/common/auth/util'
 
 @ApiTags('users')
 @Controller('users')
@@ -54,17 +46,13 @@ export class UsersController {
   findOne(@Param('uid') uid: string) {
     return this.prisma.user.findUnique({ where: { uid } })
   }
-
+  // @GetUser() user: GetUserType,
+  // const userInfo = await this.prisma.user.findUnique({ where: { uid } })
   @ApiOkResponse({ type: UserEntity })
   // @ApiBearerAuth()
   // @AllowAuthenticated()
   @Patch(':uid')
-  async update(
-    @Param('uid') uid: string,
-    @Body() updateUserDto: UpdateUser,
-    @GetUser() user: GetUserType,
-  ) {
-    const userInfo = await this.prisma.user.findUnique({ where: { uid } })
+  async update(@Param('uid') uid: string, @Body() updateUserDto: UpdateUser) {
     // checkRowLevelPermission(user, userInfo.uid)
     return this.prisma.user.update({
       where: { uid },
@@ -74,9 +62,10 @@ export class UsersController {
 
   // @ApiBearerAuth()
   // @AllowAuthenticated()
+  // @GetUser() user: GetUserType
   @Delete(':uid')
-  async remove(@Param('uid') uid: string, @GetUser() user: GetUserType) {
-    const userInfo = await this.prisma.user.findUnique({ where: { uid } })
+  async remove(@Param('uid') uid: string) {
+    // const userInfo = await this.prisma.user.findUnique({ where: { uid } })
     // checkRowLevelPermission(user, userInfo.uid)
     return this.prisma.user.delete({ where: { uid } })
   }

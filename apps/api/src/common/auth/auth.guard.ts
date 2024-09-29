@@ -93,9 +93,10 @@ export class AuthGuard implements CanActivate {
 
     const roles: Role[] = []
 
-    const [admin] = await Promise.all(rolePromises)
-    admin && roles.push('admin')
-
+    const admin = await Promise.all(rolePromises)
+    if (admin) {
+      roles.push('admin')
+    }
     return roles
   }
 }
