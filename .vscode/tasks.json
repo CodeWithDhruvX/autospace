@@ -2,9 +2,9 @@
     "version": "2.0.0",
     "tasks": [
       {
-        "label": "Prisma Migrate Dev",
+        "label": "Yarn Migrate Dev",
         "type": "shell",
-        "command": "pnpm",
+        "command": "yarn",
         "args": [
           "prisma",
           "migrate",
