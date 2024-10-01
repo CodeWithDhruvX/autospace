@@ -37,7 +37,46 @@
         },
         "problemMatcher": [],
         "detail": "Run Prisma migrate dev using pnpm in apps/api folder relative to workspace"
+      },
+      
+    {
+      "label": "Run on Startup docker",
+      "type": "shell",
+      "command": "powershell.exe",
+      "args": [
+        "-Command",
+        "Start-Process 'C:\\Program Files\\Docker\\Docker\\Docker Desktop.exe'"
+      ],
+      "problemMatcher": [],
+      "runOptions": {
+        "runOn": "folderOpen"
+      },
+      "options": {
+        "cwd": "c:/Users/dhruv"
       }
+    },
+    {
+      "label": "Prisma Studio Run",
+      "type": "shell",
+      "command": "yarn",
+      "args": [
+        "dev"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}/apps/api"
+      },
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "runOptions": {
+        "runOn": "folderOpen"
+      },
+      "problemMatcher": [],
+      "dependsOn": "Run on Startup docker",  // Run after the Docker task completes
+      "detail": "Run Prisma Studio after Docker Desktop starts"
+    }
+  
     ]
   }
   
