@@ -1,4 +1,4 @@
-import { Args, Mutation, Query, Resolver } from '@nestjs/graphql'
+import { Args, Mutation, Parent, Query, ResolveField, Resolver } from '@nestjs/graphql'
 import { AllowAuthenticated, GetUser } from 'src/common/auth/auth.decorator'
 import { checkRowLevelPermission } from 'src/common/auth/util'
 import { PrismaService } from 'src/common/prisma/prisma.service'
@@ -13,6 +13,7 @@ import { FindManyUserArgs, FindUniqueUserArgs } from './dtos/find.args'
 import { UpdateUserInput } from './dtos/update-user.input'
 import { User } from './entity/user.entity'
 import { UsersService } from './users.service'
+import { Admin } from 'src/models/admins/graphql/entity/admin.entity'
 
 @Resolver(() => User)
 export class UsersResolver {
@@ -80,4 +81,11 @@ export class UsersResolver {
   whoami(@GetUser() user: GetUserType) {
     return this.usersService.findOne({ where: { uid: user.uid } })
   }
+
+  @ResolveField(()=>Admin,{nullable:true})
+  admin(@Parent() user:User){
+    return this.prisma.user.findUnique({where:{uid:user.uid}})
+  }
+
+
 }

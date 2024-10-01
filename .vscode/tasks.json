@@ -51,12 +51,12 @@
       "runOptions": {
         "runOn": "folderOpen"
       },
-      "options": {
-        "cwd": "c:/Users/dhruv"
-      }
+      // "options": {
+      //   "cwd": "${USERPROFILE}"
+      // }
     },
     {
-      "label": "Prisma Studio Run",
+      "label": "Yarn API Dev",
       "type": "shell",
       "command": "yarn",
       "args": [

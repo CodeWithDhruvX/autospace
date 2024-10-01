@@ -23,7 +23,6 @@ import { CompaniesModule } from './models/companies/companies.module'
 import { AddressesModule } from './models/addresses/addresses.module'
 const MAX_AGE = 24 * 60 * 60
 
-console.log(process.env.JWT_SECRET)
 
 @Module({
   imports: [
