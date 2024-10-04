@@ -1,4 +1,4 @@
-import { Resolver, Query, Mutation, Args } from '@nestjs/graphql'
+import { Resolver, Query, Mutation, Args, Parent, ResolveField } from '@nestjs/graphql'
 import { AdminsService } from './admins.service'
 import { Admin } from './entity/admin.entity'
 import { FindManyAdminArgs, FindUniqueAdminArgs } from './dtos/find.args'
@@ -8,6 +8,9 @@ import { checkRowLevelPermission } from 'src/common/auth/util'
 import { GetUserType } from 'src/common/types'
 import { AllowAuthenticated, GetUser } from 'src/common/auth/auth.decorator'
 import { PrismaService } from 'src/common/prisma/prisma.service'
+import { Customer } from '@prisma/client'
+import { User } from 'src/models/users/graphql/entity/user.entity'
+import { Verification } from 'src/models/verifications/graphql/entity/verification.entity'
 
 @Resolver(() => Admin)
 export class AdminsResolver {
@@ -59,4 +62,21 @@ export class AdminsResolver {
     checkRowLevelPermission(user, admin.uid)
     return this.adminsService.remove(args)
   }
+
+  @ResolveField(()=>User,{nullable:true})
+  customer(@Parent() customer:Customer){
+    return this.prisma.user.findUnique({where:{uid:customer.uid}})
+  }
+
+  @ResolveField(()=>Verification,{nullable:true})
+  verfications(@Parent() verfications:Verification){
+    return this.prisma.verification.findMany({where:{adminId:verfications.adminId}})
+  }
+
+  @ResolveField(()=>Number)
+  async verficationsCount(@Parent() parent:Admin){
+    return this.prisma.verification.count({where:{adminId:parent.uid}})
+  }
+
+  
 }

@@ -35,6 +35,9 @@
           "kind": "build",
           "isDefault": true
         },
+        "runOptions": {
+          "runOn": "folderOpen"
+        },
         "problemMatcher": [],
         "detail": "Run Prisma migrate dev using pnpm in apps/api folder relative to workspace"
       },
