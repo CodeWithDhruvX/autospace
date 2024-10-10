@@ -1,6 +1,10 @@
 import type { Metadata } from 'next'
 import localFont from 'next/font/local'
 import './globals.css'
+import {ApolloProvider} from '@autospace/network/src/config/apollo'
+import { Inter } from 'next/font/google'
+
+const inter = Inter({ subsets: ['latin'] })
 
 const geistSans = localFont({
   src: './fonts/GeistVF.woff',
@@ -25,11 +29,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <ApolloProvider>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${inter.className}`}
       >
         {children}
       </body>
+      </ApolloProvider>
     </html>
   )
 }

@@ -1,47 +1,46 @@
 {
-    "version": "2.0.0",
-    "tasks": [
-      {
-        "label": "Yarn Migrate Dev",
-        "type": "shell",
-        "command": "yarn",
-        "args": [
-          "prisma",
-          "migrate",
-          "dev"
-        ],
-        "options": {
-          "cwd": "${workspaceFolder}/apps/api"
-        },
-        "group": {
-          "kind": "build",
-          "isDefault": true
-        },
-        "problemMatcher": [],
-        "detail": "Run Prisma migrate dev using pnpm in apps/api folder relative to workspace"
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Yarn Migrate Dev",
+      "type": "shell",
+      "command": "yarn",
+      "args": [
+        "prisma",
+        "migrate",
+        "dev"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}/apps/api"
       },
-      {
-        "label": "Prisma Studio Run",
-        "type": "shell",
-        "command": "pnpm",
-        "args": [
-          "prisma",
-          "studio"
-        ],
-        "options": {
-          "cwd": "${workspaceFolder}/apps/api"
-        },
-        "group": {
-          "kind": "build",
-          "isDefault": true
-        },
-        "runOptions": {
-          "runOn": "folderOpen"
-        },
-        "problemMatcher": [],
-        "detail": "Run Prisma migrate dev using pnpm in apps/api folder relative to workspace"
+      "group": {
+        "kind": "build",
+        "isDefault": true
       },
-      
+      "problemMatcher": [],
+      "detail": "Run Prisma migrate dev using pnpm in apps/api folder relative to workspace"
+    },
+    {
+      "label": "Prisma Studio Run",
+      "type": "shell",
+      "command": "pnpm",
+      "args": [
+        "prisma",
+        "studio"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}/apps/api"
+      },
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "runOptions": {
+        "runOn": "folderOpen"
+      },
+      "problemMatcher": [],
+      "detail": "Run Prisma migrate dev using pnpm in apps/api folder relative to workspace"
+    },
     {
       "label": "Run on Startup docker",
       "type": "shell",
@@ -54,9 +53,6 @@
       "runOptions": {
         "runOn": "folderOpen"
       },
-      // "options": {
-      //   "cwd": "${USERPROFILE}"
-      // }
     },
     {
       "label": "Yarn API Dev",
@@ -76,10 +72,20 @@
         "runOn": "folderOpen"
       },
       "problemMatcher": [],
-      "dependsOn": "Run on Startup docker",  // Run after the Docker task completes
+      "dependsOn": "Run on Startup docker", // Run after the Docker task completes
       "detail": "Run Prisma Studio after Docker Desktop starts"
-    }
-  
-    ]
-  }
-  
+    },
+    {
+      "label": "NextJS APP Run",
+      "type": "shell",
+      "command": "yarn dev",
+      "problemMatcher": [],
+      "runOptions": {
+        "runOn": "folderOpen"
+      },
+      "options": {
+        "cwd": "${workspaceFolder}/apps/web"
+      },
+    },
+  ]
+}

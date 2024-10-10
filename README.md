@@ -66,3 +66,9 @@ yarn entity:complete Address
 yarn entity:complete Slot
 yarn entity:complete Review
 yarn entity:complete Verification
+
+
+yarn add -D @graphql-codegen/cli @graphql-codegen/named-operations-object @graphql-codegen/typed-document-node
+
+
+<!-- 3:43:25 -->

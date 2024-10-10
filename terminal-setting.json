@@ -20,31 +20,6 @@
             {
                 "name": "WEB",
                 "commands": [
-                    "cd apps\\web",
-                    "pnpm dev"
-                ]
-            },
-            {
-                "name": "API",
-                "commands": [
-                    "cd apps\\api",
-                    "pnpm dev"
-                ]
-            },
-            {
-                "name": "API",
-                "commands": [
-                    "cd apps\\api",
-                    "pnpm prisma studio"
-                ]
-            }
-        ]
-    },
-    {
-        "splitTerminals": [
-            {
-                "name": "WEB",
-                "commands": [
                     "cd apps\\web"
                 ]
             },
@@ -62,6 +37,12 @@
                 "name": "LIBS",
                 "commands": [
                     "cd libs//sample-lib"
+                ]
+            },
+            {
+                "name": "NETWORK",
+                "commands": [
+                    "cd libs//network"
                 ]
             }
         ]
